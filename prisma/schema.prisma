@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model ClothingItem {
+  id        String    @id @default(cuid())
+  name      String
+  category  String
+  color     String
+  season    String
+  tags      String    @default("")
+  imageUrl  String?
+  timesWorn Int       @default(0)
+  lastWorn  DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  outfitItems OutfitItem[]
+
+  @@index([category])
+  @@index([season])
+  @@index([color])
+}
+
+model Outfit {
+  id             String   @id @default(cuid())
+  explanation    String
+  mood           String
+  occasion       String
+  weatherSummary String
+  createdAt      DateTime @default(now())
+
+  items     OutfitItem[]
+  feedback  OutfitFeedback[]
+  planned   PlannedOutfit[]
+}
+
+model OutfitItem {
+  id             String @id @default(cuid())
+  outfitId       String
+  clothingItemId String
+
+  outfit       Outfit       @relation(fields: [outfitId], references: [id], onDelete: Cascade)
+  clothingItem ClothingItem @relation(fields: [clothingItemId], references: [id], onDelete: Cascade)
+
+  @@unique([outfitId, clothingItemId])
+  @@index([outfitId])
+  @@index([clothingItemId])
+}
+
+model OutfitFeedback {
+  id       String  @id @default(cuid())
+  outfitId String
+  rating   Int
+  liked    Boolean
+  note     String?
+  createdAt DateTime @default(now())
+
+  outfit Outfit @relation(fields: [outfitId], references: [id], onDelete: Cascade)
+
+  @@index([outfitId])
+}
+
+model PlannedOutfit {
+  id        String   @id @default(cuid())
+  date      String   @unique
+  outfitId  String
+  createdAt DateTime @default(now())
+
+  outfit Outfit @relation(fields: [outfitId], references: [id], onDelete: Cascade)
+
+  @@index([date])
+  @@index([outfitId])
+}
