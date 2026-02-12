@@ -1,6 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
+import Link from "next/link";
+
 import { ArrowRight, Sparkles, Briefcase, Heart, Plane, RefreshCw, Database } from "lucide-react";
 import { useRouter } from "next/navigation";
 
