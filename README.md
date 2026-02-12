@@ -5,10 +5,10 @@
 
 **Tech Stack:** Next.js 14, TypeScript, Tailwind CSS, Prisma, Postgres (Neon), Vercel.
 
-## 🚀 Overview
+## Overview
 GlamGenius is a "human-centered AI" wardrobe manager that helps users build outfits based on their real clothes, current mood, and weather. Unlike generic chatbots, it uses a deterministic rule engine to ensure every recommendation is physically possible (you own the item) and stylistically sound (color/season matching).
 
-## 💼 For Recruiters
+## For Recruiters
 **Key Technical Highlights to Review:**
 1.  **AI Architecture**: See `src/lib/agentRules.ts` for the custom intent parser and state machine.
 2.  **Algorithm Transparency**: Visit `/agent` to see how the scoring engine weights factors like "Wear Frequency" and "Color Harmony".
