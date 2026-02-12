@@ -126,10 +126,10 @@ function GenerateContent() {
                         <Heart size={15} /> Your vibes today
                     </label>
                     <p className="text-xs text-neutral-400 mb-3">
-                        Toggle off any vibes that don't apply right now.
+                        Toggle off any vibes that don&apos;t apply right now.
                         {hasNegative && (
                             <span className="ml-1 text-violet-500 font-medium">
-                                We'll prioritize comfort for negative vibes.
+                                We&apos;ll prioritize comfort for negative vibes.
                             </span>
                         )}
                     </p>
